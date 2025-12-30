@@ -41,6 +41,9 @@ app.use(
     })
 )
 
+// flash messages
+app.use(flash())
+
 conn
 .sync()
 .then(() => {
