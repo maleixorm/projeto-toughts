@@ -12,6 +12,15 @@ const conn = require('./db/conn')
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
 
+// body response
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+)
+
+app.use(express.json())
+
 
 
 conn
