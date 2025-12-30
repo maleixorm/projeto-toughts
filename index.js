@@ -8,6 +8,12 @@ const app = express()
 
 const conn = require('./db/conn')
 
+// template engine
+app.engine('handlebars', exphbs())
+app.set('view engine', 'handlebars')
+
+
+
 conn
 .sync()
 .then(() => {
