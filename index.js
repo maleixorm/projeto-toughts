@@ -9,8 +9,9 @@ const app = express()
 const conn = require('./db/conn')
 
 // template engine
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
+app.set('views', './views');
 
 // body response
 app.use(
@@ -30,7 +31,7 @@ app.use(
         saveUninitialized: false,
         store: new FileStore({
             logFn: function() {},
-            path: require('path').join(require('os').tmpdir, 'sessions')
+            path: require('path').join(require('os').tmpdir(), 'sessions')
         }),
         cookie: {
             secure: false,
