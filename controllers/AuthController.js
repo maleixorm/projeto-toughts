@@ -27,5 +27,23 @@ module.exports = class AuthController {
             res.render('auth/register')
             return
         }
+
+        // create a password
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password, salt)
+
+        const user = {
+            name,
+            email,
+            password: hashedPassword
+        }
+
+        try {
+            await User.create(user)
+            req.flash('message', 'Cadastro realizado com sucesso!')
+            res.redirect('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
